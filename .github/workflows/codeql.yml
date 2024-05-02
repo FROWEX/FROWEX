@@ -1,0 +1,72 @@
+import requests
+rez=requests.get("https://justpaste.it/g50wl").text
+key=rez.split('<p>')[1]
+key=key.split('</p>')[0]
+gir=input("Key Gir:  ")
+
+if (gir==key):
+ print("DİJVAR HACK İYİ KULLANIMLAR DİLER")
+else:
+ print("AKTİF EDİLDİ @DİJVARHACK İYİ KULLANIMLAR")
+ 
+from colorama import Fore
+from pyfiglet import figlet_format
+import os
+
+logo = figlet_format("DİJVAR HACK")
+print(Fore.RED + logo)
+
+def user_info():
+    user_api = 'https://api.github.com/users/'
+
+    user = input(Fore.BLUE + "Github Kullanıcı Adını Girin:")
+    ful_url = user_api + user
+    response = requests.get(ful_url)
+
+    if response.status_code == 200:
+        metin = response.text
+        metin = metin.replace('"', '')
+        split = metin.split(",")
+        for x in  split:
+            print(Fore.GREEN + x)
+    else:
+        print(Fore.RED + "Girilen Kullanıcı Bulunamadı!")    
+
+def repo_info():
+    repo = input(Fore.GREEN + "Github Kullanıcı Adını Girin:")
+    full_url = 'https://api.github.com/users/' + repo + '/repos'
+    response = requests.get(full_url)
+
+    if response.status_code == 200:
+        metin = response.text
+        metin = metin.replace('"', '')
+        split = metin.split(",")
+        for x in  split:
+            print(Fore.GREEN + x)
+    else:
+        print(Fore.RED + "Girilen Kullanıcı Bulunamadı!")    
+
+
+print("""
+1- Kullanıcı İnfo 
+      
+2- Repo İnfo
+=========================================
+3- HATALAR VE İLETİŞİM İÇİN TG: @EVLiLENOX""")
+
+secim = input(Fore.BLUE + "Yapmak İstediğiniz İşlemin Numarasını Girin:")
+
+if  secim == "1":
+    try:
+        os.system("cls")
+    except:
+        os.system("clear") 
+    user_info()
+elif secim == "2":
+    try:
+        os.system("cls")
+    except:
+        os.system("clear") 
+    repo_info()
+else:
+    print(Fore.RED + "YANLIŞ SEÇİM")
